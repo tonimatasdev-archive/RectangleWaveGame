@@ -15,13 +15,15 @@ public class GameMouseListener implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (GamePanel.entities.isEmpty()) return;
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            if (GamePanel.entities.isEmpty()) return;
 
-        for (Entity entity : GamePanel.entities) {
-            if (entity instanceof Enemy enemy) {
-                if (entity.shape.contains(e.getX(), e.getY())) {
-                    enemy.hurt();
-                    break;
+            for (Entity entity : GamePanel.entities) {
+                if (entity instanceof Enemy enemy) {
+                    if (entity.shape.contains(e.getX(), e.getY())) {
+                        enemy.hurt();
+                        break;
+                    }
                 }
             }
         }

@@ -32,7 +32,7 @@ public class WaveSystem extends Thread {
     }
     
     public static void spawnWave() {
-        int enemyCount = new Random().nextInt(1, WaveSystem.maxSpawnCount);
+        int enemyCount = new Random().nextInt((int) 70F%WaveSystem.maxSpawnCount, WaveSystem.maxSpawnCount);
 
         for (int x = enemyCount; x > 0; x--) {
             GamePanel.entities.add(new Enemy());
@@ -64,7 +64,7 @@ public class WaveSystem extends Thread {
             String waveTimeText = String.valueOf(WaveSystem.timeToWave);
             double waveTimeTextX = (double) Main.panelWidth / 2 - FontUtils.getBounds(g, waveTimeText).getCenterX();
 
-            g.drawString(waveTimeText, (int) waveTimeTextX, 35);
+            g.drawString(waveTimeText, (int) waveTimeTextX, 38);
         }
 
         if (!GamePanel.entities.isEmpty()) {
