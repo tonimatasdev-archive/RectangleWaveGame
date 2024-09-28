@@ -19,7 +19,7 @@ public class Enemy extends Entity {
 
         switch (hearts) {
             case 1 -> color = Color.RED;
-            case 2 -> color = new Color(255, 200, 0);
+            case 2 -> color = new Color(255, 100, 0);
             case 3 -> color = Color.YELLOW;
         }
     }
