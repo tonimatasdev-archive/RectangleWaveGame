@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
             WaveThread.inWave = false;
             WaveThread.spawningWave = true;
             WaveThread.wave++;
-            WaveThread.timeToWave = 10;
+            WaveThread.timeToWave = 3;
             WaveThread.maxSpawnCount++;
         }
     }
