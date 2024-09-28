@@ -1,2 +1,2 @@
-rootProject.name = "FrameGame"
+rootProject.name = "RectangleWaveGame"
 

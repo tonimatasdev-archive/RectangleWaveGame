@@ -11,7 +11,7 @@ public class Main {
     public static boolean exit = false;
 
     public static void main(String[] args) {
-        JFrame window = new JFrame("FrameGame");
+        JFrame window = new JFrame("Rectangle Wave Game");
 
         window.setSize(450, 450);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
