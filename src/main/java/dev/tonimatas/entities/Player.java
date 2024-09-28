@@ -27,4 +27,9 @@ public class Player extends Entity {
             shape.x += speed;
         }
     }
+    
+    @Override
+    public void kill() {
+        Runtime.getRuntime().halt(0);
+    }
 }

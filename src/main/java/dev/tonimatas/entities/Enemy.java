@@ -54,5 +54,9 @@ public class Enemy extends Entity {
                 shape.y -= speed;
             }
         }
+        
+        if (shape.intersects(GamePanel.player.shape)) {
+            GamePanel.player.kill();
+        }
     }
 }
