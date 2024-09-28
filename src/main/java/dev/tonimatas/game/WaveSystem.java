@@ -2,9 +2,9 @@ package dev.tonimatas.game;
 
 import dev.tonimatas.Main;
 import dev.tonimatas.entities.Enemy;
+import dev.tonimatas.utils.FontUtils;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -54,20 +54,26 @@ public class WaveSystem extends Thread {
     
     public static void drawWaveStrings(Graphics2D g) {
         g.setColor(Color.WHITE);
-        
         g.setFont(new Font(g.getFont().getFontName(), Font.BOLD, 18));
+
         String waveText = "Wave " + WaveSystem.wave;
-        Rectangle2D waveTextBounds = g.getFont().getStringBounds(waveText, g.getFontMetrics().getFontRenderContext());
-        double waveTextX = (double) Main.panelWidth / 2 - waveTextBounds.getCenterX();
+        double waveTextX = (double) Main.panelWidth / 2 - FontUtils.getBounds(g, waveText).getCenterX();
 
         g.drawString(waveText, (int) waveTextX, 20);
 
         if (WaveSystem.timeToWave != 0) {
             String waveTimeText = String.valueOf(WaveSystem.timeToWave);
-            Rectangle2D waveTimeTextBounds = g.getFont().getStringBounds(waveTimeText, g.getFontMetrics().getFontRenderContext());
-            double waveTimeTextX = (double) Main.panelWidth / 2 - waveTimeTextBounds.getCenterX();
+            double waveTimeTextX = (double) Main.panelWidth / 2 - FontUtils.getBounds(g, waveTimeText).getCenterX();
 
             g.drawString(waveTimeText, (int) waveTimeTextX, 35);
+        }
+
+        
+        if (!GamePanel.entities.isEmpty()) {
+            String enemyCountText = "Remaining: " + GamePanel.entities.size();
+            double enemyCountTextX = (double) Main.panelWidth - 10 - FontUtils.getBounds(g, enemyCountText).getWidth();
+
+            g.drawString(enemyCountText, (int) enemyCountTextX, 20);
         }
     }
 }
