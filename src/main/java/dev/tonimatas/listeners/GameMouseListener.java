@@ -1,5 +1,6 @@
 package dev.tonimatas.listeners;
 
+import dev.tonimatas.entities.Enemy;
 import dev.tonimatas.entities.Entity;
 import dev.tonimatas.game.GamePanel;
 
@@ -17,9 +18,11 @@ public class GameMouseListener implements MouseListener {
         if (GamePanel.entities.isEmpty()) return;
 
         for (Entity entity : GamePanel.entities) {
-            if (entity.shape.contains(e.getX(), e.getY())) {
-                entity.kill();
-                break;
+            if (entity instanceof Enemy enemy) {
+                if (entity.shape.contains(e.getX(), e.getY())) {
+                    enemy.hurt();
+                    break;
+                }
             }
         }
     }

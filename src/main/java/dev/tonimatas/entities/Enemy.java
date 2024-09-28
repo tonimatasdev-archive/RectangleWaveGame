@@ -10,9 +10,18 @@ public class Enemy extends Entity {
     protected Random random = new Random();
     protected int movementSameDirection = 0;
     protected boolean directionX = false;
+    protected int hearts;
 
     public Enemy() {
         super(getSpawnPosition(), new Rectangle(20, 20), Color.RED, true, 1);
+        
+        this.hearts = random.nextInt(1, 4);
+
+        switch (hearts) {
+            case 1 -> color = Color.RED;
+            case 2 -> color = new Color(255, 200, 0);
+            case 3 -> color = Color.YELLOW;
+        }
     }
 
     public static Point getSpawnPosition() {
@@ -59,6 +68,21 @@ public class Enemy extends Entity {
 
         if (shape.intersects(GamePanel.player.shape)) {
             GamePanel.player.kill();
+        }
+    }
+    
+    public void hurt() {
+        hearts--;
+        
+        switch (hearts) {
+            case 0 -> kill();
+            case 1 -> color = Color.RED;
+            case 2 -> color = new Color(255, 100, 0);
+            case 3 -> color = Color.YELLOW;
+        }
+        
+        if (hearts == 0) {
+            kill();
         }
     }
 }
