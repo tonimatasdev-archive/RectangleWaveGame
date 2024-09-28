@@ -54,7 +54,6 @@ public class WaveSystem extends Thread {
     
     public static void drawWaveStrings(Graphics2D g) {
         g.setColor(Color.WHITE);
-        g.setFont(new Font(g.getFont().getFontName(), Font.BOLD, 18));
 
         String waveText = "Wave " + WaveSystem.wave;
         double waveTextX = (double) Main.panelWidth / 2 - FontUtils.getBounds(g, waveText).getCenterX();
@@ -68,7 +67,6 @@ public class WaveSystem extends Thread {
             g.drawString(waveTimeText, (int) waveTimeTextX, 35);
         }
 
-        
         if (!GamePanel.entities.isEmpty()) {
             String enemyCountText = "Remaining: " + GamePanel.entities.size();
             double enemyCountTextX = (double) Main.panelWidth - 10 - FontUtils.getBounds(g, enemyCountText).getWidth();

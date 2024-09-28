@@ -42,6 +42,7 @@ public class GamePanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setFont(new Font(g.getFont().getFontName(), Font.BOLD, 18));
         
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, Main.panelWidth, Main.panelHeight);
@@ -53,5 +54,9 @@ public class GamePanel extends JPanel {
         }
         
         WaveSystem.drawWaveStrings(g2d);
+
+        String energyCount = "Energy: " + (int) GamePanel.player.energy;
+
+        g.drawString(energyCount, 8, Main.panelHeight - 10);
     }
 }

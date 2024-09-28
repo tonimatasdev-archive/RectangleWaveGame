@@ -8,12 +8,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Player extends Entity {
+    public boolean needFullLoad = false;
+    public double energy = 1;
+    public double maxEnergy = 50;
+    
     public Player(Point position) {
         super(position, new Rectangle(20, 20), Color.GREEN, true, 1);
     }
 
     @Override
     public void update() {
+
+        if (GameKeyListener.space && !needFullLoad) {
+            if (energy > 1) {
+                energy -= 1;
+                speed = 3;
+            } else {
+                needFullLoad = true;
+            }
+        }
+        
         if (GameKeyListener.w && shape.y > 0) {
             shape.y -= speed;
         }
@@ -28,6 +42,14 @@ public class Player extends Entity {
 
         if (GameKeyListener.d && shape.x < Main.panelWidth - 20) {
             shape.x += speed;
+        }
+        
+        speed = 1;
+        
+        if (energy < maxEnergy) {
+            energy += 0.25F;
+        } else if (energy == maxEnergy) {
+            needFullLoad = false;
         }
     }
 
