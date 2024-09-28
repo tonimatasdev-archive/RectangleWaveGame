@@ -21,8 +21,8 @@ public class Enemy extends Entity {
 
             Point point = new Point(random.nextInt(Main.panel.getWidth()), random.nextInt(Main.panel.getHeight()));
 
-            if (GamePanel.player.shape.getLocation().distance(point) >= 100 &&
-            Main.panel.getWidth() > point.x + 20 && Main.panel.getHeight() > point.y + 20) {
+            if (GamePanel.player.shape.getLocation().distance(point) >= 100 && 
+                    Main.panel.getWidth() > point.x + 20 && Main.panel.getHeight() > point.y + 20) {
                 return point;
             }
         }
@@ -56,7 +56,7 @@ public class Enemy extends Entity {
                 shape.y -= speed;
             }
         }
-        
+
         if (shape.intersects(GamePanel.player.shape)) {
             GamePanel.player.kill();
         }

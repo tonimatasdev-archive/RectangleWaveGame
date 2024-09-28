@@ -32,7 +32,7 @@ public class GamePanel extends JPanel {
 
         if (WaveThread.spawningWave && WaveThread.timeToWave == 0) {
             int enemyCount = new Random().nextInt(1, WaveThread.maxSpawnCount);
-            
+
             for (int x = enemyCount; x > 0; x--) {
                 GamePanel.entities.add(new Enemy());
             }

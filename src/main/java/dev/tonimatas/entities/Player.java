@@ -1,7 +1,10 @@
 package dev.tonimatas.entities;
 
+import dev.tonimatas.Main;
+import dev.tonimatas.game.WaveThread;
 import dev.tonimatas.listeners.GameKeyListener;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Player extends Entity {
@@ -27,9 +30,11 @@ public class Player extends Entity {
             shape.x += speed;
         }
     }
-    
+
     @Override
     public void kill() {
+        Main.exit = true;
+        JOptionPane.showMessageDialog(null, "You dead in the wave " + WaveThread.wave + ".");
         Runtime.getRuntime().halt(0);
     }
 }

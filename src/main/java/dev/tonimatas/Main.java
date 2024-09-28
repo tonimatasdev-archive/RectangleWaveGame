@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
+    public static GamePanel panel;
     public static boolean exit = false;
 
     public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.addKeyListener(new GameKeyListener());
 
-        GamePanel panel = new GamePanel(window);
+        panel = new GamePanel(window);
 
         window.add(panel);
 
