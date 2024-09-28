@@ -1,7 +1,7 @@
 package dev.tonimatas;
 
 import dev.tonimatas.game.GamePanel;
-import dev.tonimatas.game.WaveThread;
+import dev.tonimatas.game.WaveSystem;
 import dev.tonimatas.listeners.GameKeyListener;
 
 import javax.swing.*;
@@ -30,7 +30,7 @@ public class Main {
 
         long frameTime = 1000 / 60;
 
-        new WaveThread().start();
+        new WaveSystem().start();
 
         while (!exit) {
             long time = System.currentTimeMillis();

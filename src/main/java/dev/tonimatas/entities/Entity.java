@@ -20,7 +20,7 @@ public abstract class Entity {
 
     public abstract void update();
 
-    public void paint(Graphics g) {
+    public void paint(Graphics2D g) {
         g.setColor(color);
         g.fillRect(shape.x, shape.y, shape.width, shape.height);
     }
