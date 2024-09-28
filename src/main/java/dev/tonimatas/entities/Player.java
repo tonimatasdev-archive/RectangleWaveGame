@@ -14,19 +14,19 @@ public class Player extends Entity {
 
     @Override
     public void update() {
-        if (GameKeyListener.w) {
+        if (GameKeyListener.w && shape.y > 0) {
             shape.y -= speed;
         }
 
-        if (GameKeyListener.a) {
+        if (GameKeyListener.a && shape.x > 0) {
             shape.x -= speed;
         }
 
-        if (GameKeyListener.s) {
+        if (GameKeyListener.s && shape.y < Main.panelHeight - 20) {
             shape.y += speed;
         }
 
-        if (GameKeyListener.d) {
+        if (GameKeyListener.d && shape.x < Main.panelWidth - 20) {
             shape.x += speed;
         }
     }

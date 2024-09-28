@@ -8,13 +8,14 @@ import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static GamePanel panel;
+    public static int panelHeight = 985;
+    public static int panelWidth = 1008;
     public static boolean exit = false;
 
     public static void main(String[] args) {
         JFrame window = new JFrame("Rectangle Wave Game");
 
-        window.setSize(450, 450);
+        window.setSize(1024, 1024);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setFocusable(true);
         window.setAutoRequestFocus(true);
@@ -23,7 +24,7 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.addKeyListener(new GameKeyListener());
 
-        panel = new GamePanel(window);
+        GamePanel panel = new GamePanel(window);
 
         window.add(panel);
 

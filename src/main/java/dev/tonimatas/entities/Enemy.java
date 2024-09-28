@@ -28,10 +28,10 @@ public class Enemy extends Entity {
         while (true) {
             Random random = new Random();
 
-            Point point = new Point(random.nextInt(Main.panel.getWidth()), random.nextInt(Main.panel.getHeight()));
+            Point point = new Point(random.nextInt(Main.panelWidth), random.nextInt(Main.panelHeight));
 
             if (GamePanel.player.shape.getLocation().distance(point) >= 100 && 
-                    Main.panel.getWidth() > point.x + 20 && Main.panel.getHeight() > point.y + 20) {
+                    Main.panelWidth > point.x + 20 && Main.panelHeight > point.y + 20) {
                 return point;
             }
         }
