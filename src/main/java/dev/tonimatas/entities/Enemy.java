@@ -1,5 +1,6 @@
 package dev.tonimatas.entities;
 
+import dev.tonimatas.Main;
 import dev.tonimatas.game.GamePanel;
 
 import java.awt.*;
@@ -18,9 +19,10 @@ public class Enemy extends Entity {
         while (true) {
             Random random = new Random();
 
-            Point point = new Point(random.nextInt(450), random.nextInt(450));
+            Point point = new Point(random.nextInt(Main.panel.getWidth()), random.nextInt(Main.panel.getHeight()));
 
-            if (GamePanel.player.shape.getLocation().distance(point) >= 100) {
+            if (GamePanel.player.shape.getLocation().distance(point) >= 100 &&
+            Main.panel.getWidth() > point.x + 20 && Main.panel.getHeight() > point.y + 20) {
                 return point;
             }
         }
