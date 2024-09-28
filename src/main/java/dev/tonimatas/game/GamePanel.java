@@ -1,5 +1,6 @@
 package dev.tonimatas.game;
 
+import dev.tonimatas.Main;
 import dev.tonimatas.entities.Enemy;
 import dev.tonimatas.entities.Entity;
 import dev.tonimatas.entities.Player;
@@ -17,7 +18,7 @@ public class GamePanel extends JPanel {
     public static List<Entity> entities = new ArrayList<>();
 
     public GamePanel(JFrame frame) {
-        player = new Player(new Point(frame.getWidth() / 2 - 10, frame.getHeight() / 2 - 10));
+        player = new Player(new Point(Main.panelWidth / 2 - 10, Main.panelHeight / 2 - 10));
         setSize(frame.getSize());
         setVisible(true);
         addMouseListener(new GameMouseListener());

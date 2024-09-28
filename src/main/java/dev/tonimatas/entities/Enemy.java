@@ -30,8 +30,8 @@ public class Enemy extends Entity {
 
             Point point = new Point(random.nextInt(Main.panelWidth), random.nextInt(Main.panelHeight));
 
-            if (GamePanel.player.shape.getLocation().distance(point) >= 100 && 
-                    Main.panelWidth > point.x + 20 && Main.panelHeight > point.y + 20) {
+            if (GamePanel.player.shape.getLocation().distance(point) >= 400 && 
+                    Main.panelWidth - 20 > point.x && Main.panelHeight - 20 > point.y) {
                 return point;
             }
         }
