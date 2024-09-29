@@ -13,7 +13,6 @@ public class WaveSystem extends Thread {
     public static int timeToWave = 10;
     public static boolean spawningWave = true;
     public static boolean inWave = false;
-    public static int maxSpawnCount = 3;
 
     @Override
     public void run() {
@@ -32,7 +31,7 @@ public class WaveSystem extends Thread {
     }
     
     public static void spawnWave() {
-        int enemyCount = new Random().nextInt((int) 70F%WaveSystem.maxSpawnCount, WaveSystem.maxSpawnCount);
+        int enemyCount = new Random().nextInt((int) 70F % (wave + 2), wave + 2);
 
         for (int x = enemyCount; x > 0; x--) {
             GamePanel.entities.add(new Enemy());
@@ -47,7 +46,6 @@ public class WaveSystem extends Thread {
         WaveSystem.spawningWave = true;
         WaveSystem.wave++;
         WaveSystem.timeToWave = 3;
-        WaveSystem.maxSpawnCount++;
         
         new WaveSystem().start();
     }
