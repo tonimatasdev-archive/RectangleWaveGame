@@ -72,4 +72,11 @@ public class WaveSystem extends Thread {
             g.drawString(enemyCountText, (int) enemyCountTextX, 20);
         }
     }
+    
+    public static void reset() {
+        wave = 1;
+        timeToWave = 10;
+        spawningWave = true;
+        inWave = false;
+    }
 }

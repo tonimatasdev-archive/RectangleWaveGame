@@ -3,6 +3,7 @@ package dev.tonimatas.game;
 import dev.tonimatas.Main;
 import dev.tonimatas.entities.Entity;
 import dev.tonimatas.entities.Player;
+import dev.tonimatas.listeners.GameKeyListener;
 import dev.tonimatas.listeners.GameMouseListener;
 
 import javax.swing.*;
@@ -11,17 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamePanel extends JPanel {
+    public static boolean playerIsDeath = false;
     public static Player player;
     public static List<Entity> entities = new ArrayList<>();
 
     public GamePanel(JFrame frame) {
-        player = new Player(new Point(Main.panelWidth / 2 - 10, Main.panelHeight / 2 - 10));
+        player = new Player();
         setSize(frame.getSize());
         setVisible(true);
         addMouseListener(new GameMouseListener());
     }
 
     public void update() {
+        if (playerIsDeath) {
+            resetGame();
+            return;
+        }
+        
         player.update();
 
         for (Entity entity : entities) {
@@ -58,5 +65,18 @@ public class GamePanel extends JPanel {
         String energyCount = "Energy: " + (int) GamePanel.player.energy;
 
         g.drawString(energyCount, 8, Main.panelHeight - 10);
+    }
+    
+    public static void resetGame() {
+        playerIsDeath = false;
+        player = new Player();
+        entities.clear();
+
+        JOptionPane.showMessageDialog(null, "You dead in the wave " + WaveSystem.wave + ".");
+
+        GameKeyListener.reset();
+        WaveSystem.reset();
+
+        new WaveSystem().start();
     }
 }

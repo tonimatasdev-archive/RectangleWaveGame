@@ -1,10 +1,9 @@
 package dev.tonimatas.entities;
 
 import dev.tonimatas.Main;
-import dev.tonimatas.game.WaveSystem;
+import dev.tonimatas.game.GamePanel;
 import dev.tonimatas.listeners.GameKeyListener;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Player extends Entity {
@@ -12,8 +11,8 @@ public class Player extends Entity {
     public double energy = 1;
     public double maxEnergy = 50;
     
-    public Player(Point position) {
-        super(position, new Rectangle(20, 20), Color.GREEN, true, 1);
+    public Player() {
+        super(new Point(Main.panelWidth / 2 - 10, Main.panelHeight / 2 - 10), new Rectangle(20, 20), Color.GREEN, true, 1);
     }
 
     @Override
@@ -55,8 +54,6 @@ public class Player extends Entity {
 
     @Override
     public void kill() {
-        Main.exit = true;
-        JOptionPane.showMessageDialog(null, "You dead in the wave " + WaveSystem.wave + ".");
-        Runtime.getRuntime().halt(0);
+        GamePanel.playerIsDeath = true;
     }
 }

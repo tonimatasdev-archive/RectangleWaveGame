@@ -32,4 +32,12 @@ public class GameKeyListener implements KeyListener {
             case KeyEvent.VK_SPACE -> space = false;
         }
     }
+    
+    public static void reset() {
+        w = false;
+        a = false;
+        s = false;
+        d = false;
+        space = false;
+    }
 }
