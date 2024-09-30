@@ -1,6 +1,6 @@
 package dev.tonimatas.entities;
 
-import dev.tonimatas.Main;
+import dev.tonimatas.game.GameFrame;
 import dev.tonimatas.game.GamePanel;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ public class Enemy extends Entity {
 
     public Enemy() {
         super(getSpawnPosition(), new Rectangle(20, 20), Color.RED, true, 1);
-        
+
         this.hearts = random.nextInt(1, 4);
 
         switch (hearts) {
@@ -28,10 +28,10 @@ public class Enemy extends Entity {
         while (true) {
             Random random = new Random();
 
-            Point point = new Point(random.nextInt(Main.panelWidth), random.nextInt(Main.panelHeight));
+            Point point = new Point(random.nextInt(GameFrame.panelWidth), random.nextInt(GameFrame.panelHeight));
 
-            if (GamePanel.player.shape.getLocation().distance(point) >= 400 && 
-                    Main.panelWidth - 20 > point.x && Main.panelHeight - 20 > point.y) {
+            if (GamePanel.player.shape.getLocation().distance(point) >= 400 &&
+                    GameFrame.panelWidth - 20 > point.x && GameFrame.panelHeight - 20 > point.y) {
                 return point;
             }
         }
@@ -70,17 +70,17 @@ public class Enemy extends Entity {
             GamePanel.player.kill();
         }
     }
-    
+
     public void hurt() {
         hearts--;
-        
+
         switch (hearts) {
             case 0 -> kill();
             case 1 -> color = Color.RED;
             case 2 -> color = new Color(255, 100, 0);
             case 3 -> color = Color.YELLOW;
         }
-        
+
         if (hearts == 0) {
             kill();
         }

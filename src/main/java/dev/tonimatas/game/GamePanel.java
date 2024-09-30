@@ -1,10 +1,8 @@
 package dev.tonimatas.game;
 
-import dev.tonimatas.Main;
 import dev.tonimatas.entities.Entity;
 import dev.tonimatas.entities.Player;
 import dev.tonimatas.listeners.GameKeyListener;
-import dev.tonimatas.listeners.GameMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +18,19 @@ public class GamePanel extends JPanel {
         player = new Player();
         setSize(frame.getSize());
         setVisible(true);
-        addMouseListener(new GameMouseListener());
+    }
+
+    public static void resetGame() {
+        playerIsDeath = false;
+        player = new Player();
+        entities.clear();
+
+        JOptionPane.showMessageDialog(null, "You dead in the wave " + WaveSystem.wave + ".");
+
+        GameKeyListener.reset();
+        WaveSystem.reset();
+
+        new WaveSystem().start();
     }
 
     public void update() {
@@ -28,7 +38,7 @@ public class GamePanel extends JPanel {
             resetGame();
             return;
         }
-        
+
         player.update();
 
         for (Entity entity : entities) {
@@ -50,33 +60,20 @@ public class GamePanel extends JPanel {
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setFont(new Font(g.getFont().getFontName(), Font.BOLD, 18));
-        
+
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, Main.panelWidth, Main.panelHeight);
+        g.fillRect(0, 0, GameFrame.panelWidth, GameFrame.panelHeight);
 
         player.paint(g2d);
 
         for (Entity entity : entities) {
             entity.paint(g2d);
         }
-        
+
         WaveSystem.drawWaveStrings(g2d);
 
         String energyCount = "Energy: " + (int) GamePanel.player.energy;
 
-        g.drawString(energyCount, 8, Main.panelHeight - 10);
-    }
-    
-    public static void resetGame() {
-        playerIsDeath = false;
-        player = new Player();
-        entities.clear();
-
-        JOptionPane.showMessageDialog(null, "You dead in the wave " + WaveSystem.wave + ".");
-
-        GameKeyListener.reset();
-        WaveSystem.reset();
-
-        new WaveSystem().start();
+        g.drawString(energyCount, 8, GameFrame.panelHeight - 10);
     }
 }

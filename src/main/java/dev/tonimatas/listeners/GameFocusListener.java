@@ -6,7 +6,7 @@ import java.awt.event.FocusListener;
 public class GameFocusListener implements FocusListener {
     @Override
     public void focusGained(FocusEvent e) {
-        
+
     }
 
     @Override
