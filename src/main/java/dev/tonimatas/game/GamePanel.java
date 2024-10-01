@@ -3,6 +3,7 @@ package dev.tonimatas.game;
 import dev.tonimatas.entities.Entity;
 import dev.tonimatas.entities.Player;
 import dev.tonimatas.listeners.GameKeyListener;
+import dev.tonimatas.listeners.GameMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel {
         player = new Player();
         setSize(frame.getSize());
         setVisible(true);
+        addMouseListener(new GameMouseListener());
     }
 
     public static void resetGame() {

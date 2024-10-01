@@ -3,7 +3,6 @@ package dev.tonimatas.game;
 import dev.tonimatas.Main;
 import dev.tonimatas.listeners.GameFocusListener;
 import dev.tonimatas.listeners.GameKeyListener;
-import dev.tonimatas.listeners.GameMouseListener;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +21,6 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
         addKeyListener(new GameKeyListener());
         addFocusListener(new GameFocusListener());
-        addMouseListener(new GameMouseListener());
 
         GamePanel panel = new GamePanel(this);
 
