@@ -14,7 +14,9 @@ public class WaveSystem extends Thread {
     public static boolean inWave = false;
 
     public static void spawnWave() {
-        int enemyCount = new Random().nextInt((int) 70F % (wave + 2), wave + 2);
+        int minSpawnCount = (int) (0.7 * wave);
+        
+        int enemyCount = new Random().nextInt(minSpawnCount == 0 ? 1 : minSpawnCount, wave + 2);
 
         for (int x = enemyCount; x > 0; x--) {
             GamePanel.entities.add(new Enemy());
