@@ -1,7 +1,6 @@
 package dev.tonimatas.entities;
 
-import dev.tonimatas.game.GameFrame;
-import dev.tonimatas.game.GamePanel;
+import dev.tonimatas.world.World;
 
 import java.awt.*;
 import java.util.Random;
@@ -11,9 +10,10 @@ public class Enemy extends Entity {
     protected int movementSameDirection = 0;
     protected boolean directionX = false;
     protected int hearts;
+    protected Player target;
 
-    public Enemy() {
-        super(getSpawnPosition(), new Rectangle(20, 20), Color.RED, true, 1);
+    public Enemy(World world) {
+        super(world, getSpawnPosition(world), new Rectangle(20, 20), Color.RED, true, 1);
 
         this.hearts = random.nextInt(1, 4);
 
@@ -22,16 +22,18 @@ public class Enemy extends Entity {
             case 2 -> color = new Color(255, 100, 0);
             case 3 -> color = Color.YELLOW;
         }
+
+        nearestPlayer();
     }
 
-    public static Point getSpawnPosition() {
+    public static Point getSpawnPosition(World world) {
         while (true) {
             Random random = new Random();
 
-            Point point = new Point(random.nextInt(GameFrame.panelWidth), random.nextInt(GameFrame.panelHeight));
+            Point point = new Point(random.nextInt(world.width), random.nextInt(world.height));
 
-            if (GamePanel.player.shape.getLocation().distance(point) >= 400 &&
-                    GameFrame.panelWidth - 20 > point.x && GameFrame.panelHeight - 20 > point.y) {
+            if (world.getCenter().distance(point) >= 400 &&
+                    world.width - 20 > point.x && world.height - 20 > point.y) {
                 return point;
             }
         }
@@ -39,7 +41,11 @@ public class Enemy extends Entity {
 
     @Override
     public void update() {
-        Point playerPos = GamePanel.player.shape.getLocation();
+        if (target == null) {
+            return;
+        }
+        
+        Point playerPos = target.getPosition();
 
         if (movementSameDirection <= 0) {
             directionX = random.nextBoolean();
@@ -66,9 +72,25 @@ public class Enemy extends Entity {
             }
         }
 
-        if (shape.intersects(GamePanel.player.shape)) {
-            GamePanel.player.kill();
+        if (shape.intersects(target.shape)) {
+            target.kill();
         }
+    }
+    
+    public void nearestPlayer() {
+        Player nearestPlayer = null;
+        
+        for (Player player : world.server.getPlayers().values()) {
+            if (nearestPlayer == null) {
+                nearestPlayer = player;
+            } else {
+                if (nearestPlayer.getPosition().distance(this.getPosition()) > player.getPosition().distance(this.getPosition())) {
+                    nearestPlayer = player;
+                }
+            }
+        }
+        
+        target = nearestPlayer;
     }
 
     public void hurt() {

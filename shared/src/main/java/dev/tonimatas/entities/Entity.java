@@ -1,21 +1,29 @@
 package dev.tonimatas.entities;
 
-import dev.tonimatas.game.GamePanel;
+import dev.tonimatas.world.World;
 
 import java.awt.*;
+import java.util.UUID;
 
 public abstract class Entity {
+    public World world;
     public Rectangle shape;
     public Color color;
     public boolean filled;
     public int speed;
+    public boolean death;
 
-    public Entity(Point position, Rectangle shape, Color color, boolean filled, int speed) {
+    public Entity(World world, Point position, Rectangle shape, Color color, boolean filled, int speed) {
+        this.world = world;
         shape.setLocation(position);
         this.shape = shape;
         this.color = color;
         this.filled = filled;
         this.speed = speed;
+    }
+    
+    public Point getPosition() {
+        return shape.getLocation();
     }
 
     public abstract void update();
@@ -26,6 +34,6 @@ public abstract class Entity {
     }
 
     public void kill() {
-        GamePanel.entities.remove(this);
+        death = true;
     }
 }

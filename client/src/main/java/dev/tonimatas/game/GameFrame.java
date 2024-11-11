@@ -1,6 +1,5 @@
 package dev.tonimatas.game;
 
-import dev.tonimatas.Main;
 import dev.tonimatas.listeners.GameFocusListener;
 import dev.tonimatas.listeners.GameKeyListener;
 
@@ -8,9 +7,6 @@ import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class GameFrame extends JFrame {
-    public static int panelHeight = 985;
-    public static int panelWidth = 1008;
-
     public GameFrame() {
         setSize(1024, 1024);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +26,7 @@ public class GameFrame extends JFrame {
 
         new WaveSystem().start();
 
-        while (!Main.exit) {
+        while (true) {
             long time = System.currentTimeMillis();
 
             panel.update();

@@ -1,8 +1,7 @@
 package dev.tonimatas.entities;
 
-import dev.tonimatas.game.GameFrame;
-import dev.tonimatas.game.GamePanel;
 import dev.tonimatas.listeners.GameKeyListener;
+import dev.tonimatas.world.World;
 
 import java.awt.*;
 
@@ -11,13 +10,12 @@ public class Player extends Entity {
     public double energy = 1;
     public double maxEnergy = 50;
 
-    public Player() {
-        super(new Point(GameFrame.panelWidth / 2 - 10, GameFrame.panelHeight / 2 - 10), new Rectangle(20, 20), Color.GREEN, true, 1);
+    public Player(World world) {
+        super(world, world.getCenter(), new Rectangle(20, 20), Color.GREEN, true, 1);
     }
 
     @Override
     public void update() {
-
         if (GameKeyListener.space && !needFullLoad) {
             if (energy > 1) {
                 energy -= 1;
@@ -35,11 +33,11 @@ public class Player extends Entity {
             shape.x -= speed;
         }
 
-        if (GameKeyListener.s && shape.y < GameFrame.panelHeight - 20) {
+        if (GameKeyListener.s && shape.y < world.height - 20) {
             shape.y += speed;
         }
 
-        if (GameKeyListener.d && shape.x < GameFrame.panelWidth - 20) {
+        if (GameKeyListener.d && shape.x < world.width - 20) {
             shape.x += speed;
         }
 
@@ -50,10 +48,5 @@ public class Player extends Entity {
         } else if (energy == maxEnergy) {
             needFullLoad = false;
         }
-    }
-
-    @Override
-    public void kill() {
-        GamePanel.playerIsDeath = true;
     }
 }

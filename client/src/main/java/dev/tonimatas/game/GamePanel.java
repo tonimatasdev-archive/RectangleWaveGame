@@ -43,10 +43,6 @@ public class GamePanel extends JPanel {
 
         player.update();
 
-        for (Entity entity : entities) {
-            entity.update();
-        }
-
         if (WaveSystem.spawningWave && WaveSystem.timeToWave == 0) {
             WaveSystem.spawnWave();
         }
